@@ -1,0 +1,11 @@
+default:
+  app:
+    name: 'My app'
+    url: 'http://localhost:3041/'
+    port: 3041
+  db:
+    host: '127.0.0.1'
+    port: '27500'
+    base: 'blueotterzz'
+    user: 'otterz'
+    pass: '69BlueOyeah!'

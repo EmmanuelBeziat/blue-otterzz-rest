@@ -1,0 +1,34 @@
+{
+  "name": "blue-otterzz-rest",
+  "version": "1.0.0",
+  "description": "REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmmanuelBeziat/blue-otterzz-rest.git"
+  },
+  "author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EmmanuelBeziat/blue-otterzz-rest/issues"
+  },
+  "homepage": "https://github.com/EmmanuelBeziat/blue-otterzz-rest#readme",
+  "dependencies": {
+    "mongoose": "^5.4.13",
+    "mongoose-patch-update": "^1.0.6",
+    "mongoose-string-query": "^0.2.7",
+    "mongoose-timestamp": "^0.6.0",
+    "mongoose-url-slugs": "^1.0.2",
+    "node-yaml-config": "0.0.4",
+    "randomstring": "^1.1.5",
+    "restify": "^7.7.0",
+    "restify-cors-middleware": "^1.1.1",
+    "restify-errors": "^6.1.1",
+    "restify-plugins": "^1.6.0",
+    "serve-static-restify": "^3.0.0",
+    "sharp": "^0.21.3"
+  }
+}
