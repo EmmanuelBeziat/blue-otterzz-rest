@@ -1,7 +1,4 @@
-const config = require('../config')
 const errors = require('restify-errors')
-const randomString = require('randomstring')
-
 const Song = require('../models/song')
 
 module.exports = (server) => {
