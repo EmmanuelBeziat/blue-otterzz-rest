@@ -29,6 +29,6 @@ const liveSchema = new mongoose.Schema({
 liveSchema.plugin(mongooseUrlSlugs('date'))
 liveSchema.plugin(mongooseStringQuery)
 
-const Live = mongoose.model('Live', LiveSchema)
+const Live = mongoose.model('Live', liveSchema)
 
 module.exports = Live

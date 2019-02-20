@@ -16,6 +16,6 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(mongooseUrlSlugs('name'))
 userSchema.plugin(mongooseStringQuery)
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model('User', userSchema)
 
 module.exports = User

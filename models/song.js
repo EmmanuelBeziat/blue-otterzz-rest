@@ -51,6 +51,6 @@ songSchema.plugin(mongooseStringQuery)
 songSchema.virtual('name').get(() => `${this.infos.artist} — ${this.infos.title}`)
 songSchema.virtual('getScore').get(() => this.scores.reduce((a, b) => a.value + b.value, 0) / this.scores.length)
 
-const Song = mongoose.model('Song', SongSchema)
+const Song = mongoose.model('Song', songSchema)
 
 module.exports = Song
