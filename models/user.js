@@ -16,6 +16,18 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(mongooseUrlSlugs('name'))
 userSchema.plugin(mongooseStringQuery)
 
+userSchema.pre('save', next => {
+	let data = this
+	console.log(data, this)
+	bcrypt.hash(data.password, saltRounds, (err, hash) => {
+		if (err) return next(err)
+
+		console.log(hash)
+		data.password = hash
+		next()
+	})
+})
+
 const User = mongoose.model('User', userSchema)
 
 module.exports = User

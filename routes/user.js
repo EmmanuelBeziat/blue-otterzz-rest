@@ -17,18 +17,6 @@ module.exports = (server) => {
 		let data = req.body || {}
 		let user = new User(data)
 
-		user.schema.pre('save', next => {
-			let data = this
-			console.log(data, this)
-			bcrypt.hash(data.password, saltRounds, (err, hash) => {
-				if (err) return next(err)
-
-				console.log(hash)
-				data.password = hash
-        next()
-			})
-		})
-
 		user.save((err, item) => {
 			if (err) {
 				return next(new errors.InternalError(err.message))
