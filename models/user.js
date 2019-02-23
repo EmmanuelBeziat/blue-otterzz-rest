@@ -3,7 +3,7 @@ const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
 
 const userSchema = new mongoose.Schema({
-	isActive: Boolean,
+	isActive: { type: Boolean, default: true },
 	name: { type: String, unique: true },
 	email: { type: String, unique: true },
 	password: String,

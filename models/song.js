@@ -3,7 +3,7 @@ const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
 
 const songSchema = new mongoose.Schema({
-	isActive: Boolean,
+	isActive: { type: Boolean, default: true },
 	infos: {
 		title: String,
 		artist: String

@@ -3,7 +3,7 @@ const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
 
 const liveSchema = new mongoose.Schema({
-	isActive: Boolean,
+	isActive: { type: Boolean, default: true },
 	name: String,
 	date: Date,
 	registered: {
