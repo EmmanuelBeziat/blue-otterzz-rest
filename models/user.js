@@ -1,35 +1,75 @@
-const mongoose = require('mongoose')
+const mongoose, { Schema } = require('mongoose')
 const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
-
 const bcrypt = require('bcrypt')
-const saltRounds = 10
+const validator = require('validator')
 
-const userSchema = new mongoose.Schema({
+/**
+ * Schema
+ */
+const userSchema = new Schema({
 	isActive: { type: Boolean, default: true },
-	name: { type: String, required: true, index: { unique: true } },
-	email: { type: String, required: true, index: { unique: true } },
-	password: { type: String, required: true },
-	about: String,
+	isAdmin: { type: Boolean, default: false },
+	username: { type: String, required: true, index: { unique: true } },
+	email: {
+		type: String,
+		required: true,
+		index: { unique: true },
+		validate: {
+			validator: validator.isEmail,
+			message: '{VALUE} is not a valid email',
+			isAsync: false
+		},
+		trim: true
+	},
+	password: { type: String, required: true, bcrypt: true },
+	bio: String,
 	registered: { type: Date, default: Date.new },
-	picture: String,
-	instruments: [String]
+	picture: { type: String, trim: true },
+	instruments: [String],
+	preferences: {
+		notifications: { type: Boolean, default: false }
+	},
+	recoveryCode: { type: String, trim: true, default: '' }
 }, { minimize: false })
 
-userSchema.plugin(mongooseUrlSlugs('name'))
-userSchema.plugin(mongooseStringQuery)
-
-userSchema.pre('save', next => {
+/**
+ * Hooks
+ */
+/* userSchema.pre('save', next => {
 	let data = this
 	console.log(data, this)
-	bcrypt.hash(data.password, saltRounds, (err, hash) => {
+	bcrypt.hash(data.password, 10, (err, hash) => {
 		if (err) return next(err)
 
 		console.log(hash)
 		data.password = hash
 		next()
 	})
+}) */
+
+// Exemple renvoi password
+/* UserSchema.pre('findOneAndUpdate', function(next) {
+	if (!this._update.recoveryCode) next()
+
+	email({
+		type: 'password',
+		email: this._conditions.email,
+		passcode: this._update.recoveryCode,
+	})
+		.then(() => next())
+		.catch(err => {
+			console.log(err)
+			next()
+		})
 })
+ */
+/**
+ * Plugins
+ */
+UserSchema.plugin(bcrypt)
+userSchema.plugin(mongooseUrlSlugs('name'))
+userSchema.plugin(mongooseStringQuery)
 
 const User = mongoose.model('User', userSchema)
 
