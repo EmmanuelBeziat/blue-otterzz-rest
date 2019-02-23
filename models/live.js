@@ -4,10 +4,10 @@ const mongooseUrlSlugs = require('mongoose-url-slugs')
 
 const liveSchema = new mongoose.Schema({
 	isActive: { type: Boolean, default: true },
-	name: String,
+	name: { type: String, required: true },
 	date: Date,
 	registered: {
-		user: String,
+		user: { type: String, required: true },
 		date: { type: Date, default: Date.now }
 	},
 	status: {

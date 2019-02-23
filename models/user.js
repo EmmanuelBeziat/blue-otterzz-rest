@@ -4,11 +4,11 @@ const mongooseUrlSlugs = require('mongoose-url-slugs')
 
 const userSchema = new mongoose.Schema({
 	isActive: { type: Boolean, default: true },
-	name: { type: String, unique: true },
-	email: { type: String, unique: true },
-	password: String,
+	name: { type: String, unique: true, required: true },
+	email: { type: String, unique: true, required: true },
+	password: { type: String, required: true },
 	about: String,
-	registered: { type: Date, default: Date.new, required: true },
+	registered: { type: Date, default: Date.new },
 	picture: String,
 	instruments: [String]
 }, { minimize: false })

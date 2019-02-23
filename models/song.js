@@ -5,16 +5,16 @@ const mongooseUrlSlugs = require('mongoose-url-slugs')
 const songSchema = new mongoose.Schema({
 	isActive: { type: Boolean, default: true },
 	infos: {
-		title: String,
-		artist: String
+		title: { type: String, required: true },
+		artist: { type: String, required: true }
 	},
 	meta: [{
 		tuning: String,
 		style: String,
-		url: String
+		url: { type: String, required: true }
 	}],
 	submited: {
-		user: String,
+		user: { type: String, required: true },
 		date: { type: Date, default: Date.now }
 	},
 	score: [{
