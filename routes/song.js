@@ -66,7 +66,7 @@ module.exports = (server) => {
 	/**
 	 * PUT
 	 */
-	server.put('/songs/:song_id', (req, res, next) => {
+	server.put('/songs/:slug', (req, res, next) => {
 		if (!req.is('application/json')) {
 			return next(
 				new errors.InvalidContentError("Expects 'application/json'")
@@ -74,11 +74,8 @@ module.exports = (server) => {
 		}
 
 		let data = req.body || {}
-		if (!data._id) {
-			data = Object.assign({}, data, { _id: req.params.spot_id })
-		}
 
-		Song.findOneAndUpdate({ _id: req.params.song_id }, data, {}, (err, doc) => {
+		Song.findOneAndUpdate({ slug: req.params.slug }, { $set: data }, { new: true }, (err, doc) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
@@ -98,8 +95,8 @@ module.exports = (server) => {
 	/**
 	 * DELETE
 	 */
-	server.del('/songs/:song_id', (req, res, next) => {
-		Song.deleteOne({ _id: req.params.song_id }, err => {
+	server.del('/songs/:slug', (req, res, next) => {
+		Song.deleteOne({ slug: req.params.slug }, err => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)

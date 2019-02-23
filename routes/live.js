@@ -68,7 +68,7 @@ module.exports = (server) => {
 	/**
 	 * PUT
 	 */
-	server.put('/lives/:live_id', (req, res, next) => {
+	server.put('/lives/:slug', (req, res, next) => {
 		if (!req.is('application/json')) {
 			return next(
 				new errors.InvalidContentError("Expects 'application/json'")
@@ -76,11 +76,8 @@ module.exports = (server) => {
 		}
 
 		let data = req.body || {}
-		if (!data._id) {
-			data = Object.assign({}, data, { _id: req.params.spot_id })
-		}
 
-		Live.findOneAndUpdate({ _id: req.params.live_id }, data, {}, (err, doc) => {
+		Live.findOneAndUpdate({ slug: req.params.slug }, { $set: data }, { new: true }, (err, doc) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
@@ -100,8 +97,8 @@ module.exports = (server) => {
 	/**
 	 * DELETE
 	 */
-	server.del('/lives/:live_id', (req, res, next) => {
-		Live.deleteOne({ _id: req.params.live_id }, err => {
+	server.del('/lives/:slug', (req, res, next) => {
+		Live.deleteOne({ slug: req.params.slug }, err => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)

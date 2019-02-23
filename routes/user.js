@@ -66,7 +66,7 @@ module.exports = (server) => {
 	/**
 	 * PUT
 	 */
-	server.put('/users/:user_id', (req, res, next) => {
+	server.put('/users/:slug', (req, res, next) => {
 		if (!req.is('application/json')) {
 			return next(
 				new errors.InvalidContentError("Expects 'application/json'")
@@ -75,9 +75,7 @@ module.exports = (server) => {
 
 		let data = req.body || {}
 
-		console.log(data)
-
-		User.findOneAndUpdate({ _id: req.params.user_id }, { $set: data }, { new: true }, (err, doc) => {
+		User.findOneAndUpdate({ slug: req.params.slug }, { $set: data }, { new: true }, (err, doc) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
@@ -97,8 +95,8 @@ module.exports = (server) => {
 	/**
 	 * DELETE
 	 */
-	server.del('/users/:user_id', (req, res, next) => {
-		User.deleteOne({ _id: req.params.user_id }, err => {
+	server.del('/users/:slug', (req, res, next) => {
+		User.deleteOne({ slug: req.params.slug }, err => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
