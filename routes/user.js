@@ -74,11 +74,10 @@ module.exports = (server) => {
 		}
 
 		let data = req.body || {}
-		if (!data._id) {
-			data = Object.assign({}, data, { _id: req.params.spot_id })
-		}
 
-		User.findOneAndUpdate({ _id: req.params.user_id }, data, {}, (err, doc) => {
+		console.log(data)
+
+		User.findOneAndUpdate({ _id: req.params.user_id }, { $set: data }, { new: true }, (err, doc) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
