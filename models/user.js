@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
 
+const bcrypt = require('bcrypt')
+const saltRounds = 10
+
 const userSchema = new mongoose.Schema({
 	isActive: { type: Boolean, default: true },
 	name: { type: String, required: true, index: { unique: true } },

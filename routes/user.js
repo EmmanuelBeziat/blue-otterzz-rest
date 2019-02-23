@@ -1,7 +1,5 @@
-const bcrypt = require('bcrypt')
 const errors = require('restify-errors')
 const User = require('../models/user')
-const saltRounds = 10
 
 module.exports = (server) => {
 	/**
