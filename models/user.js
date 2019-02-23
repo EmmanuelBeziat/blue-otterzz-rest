@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
 /**
  * Plugins
  */
-UserSchema.plugin(bcrypt)
+userSchema.plugin(bcrypt)
 userSchema.plugin(mongooseUrlSlugs('name'))
 userSchema.plugin(mongooseStringQuery)
 
