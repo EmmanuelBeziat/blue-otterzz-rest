@@ -1,4 +1,4 @@
-const mongoose, { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
 const bcrypt = require('bcrypt')
@@ -7,7 +7,7 @@ const validator = require('validator')
 /**
  * Schema
  */
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
 	isActive: { type: Boolean, default: true },
 	isAdmin: { type: Boolean, default: false },
 	username: { type: String, required: true, index: { unique: true } },
