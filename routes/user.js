@@ -14,6 +14,9 @@ module.exports = (server) => {
 			)
 		}
 
+		let data = req.body || {}
+		let user = new User(data)
+
 		user.pre('save', next => {
 			let data = this
 			console.log(data, this)
@@ -25,9 +28,6 @@ module.exports = (server) => {
         next()
 			})
 		})
-
-		let data = req.body || {}
-		let user = new User(data)
 
 		user.save((err, item) => {
 			if (err) {
