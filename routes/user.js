@@ -1,5 +1,7 @@
+const bcrypt = require('bcrypt')
 const errors = require('restify-errors')
 const User = require('../models/user')
+const saltRounds = 10
 
 module.exports = (server) => {
 	/**
@@ -11,6 +13,18 @@ module.exports = (server) => {
 				new errors.InvalidContentError(`Expects 'application/json'`)
 			)
 		}
+
+		user.pre('save', next => {
+			let data = this
+			console.log(data, this)
+			bcrypt.hash(data.password, saltRounds, (err, hash) => {
+				if (err) return next(err)
+
+				console.log(hash)
+				data.password = hash
+        next()
+			})
+		})
 
 		let data = req.body || {}
 		let user = new User(data)

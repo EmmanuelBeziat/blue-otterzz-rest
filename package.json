@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/EmmanuelBeziat/blue-otterzz-rest#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "mongoose": "^5.4.13",
     "mongoose-patch-update": "^1.0.6",
     "mongoose-string-query": "^0.2.7",
