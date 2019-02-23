@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
-const bcrypt = require('bcrypt')
+const mongooseBcrypt = require('mongoose-bcrypt')
 const validator = require('validator')
 
 /**
@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
 /**
  * Plugins
  */
-userSchema.plugin(bcrypt)
+userSchema.plugin(mongooseBcrypt)
 userSchema.plugin(mongooseUrlSlugs('name'))
 userSchema.plugin(mongooseStringQuery)
 
