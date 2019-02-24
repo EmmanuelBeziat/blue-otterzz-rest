@@ -13,8 +13,6 @@ module.exports = (server) => {
 			)
 		}
 
-		console.log(req.params)
-
 		User.findOne({ slug: req.params.username }, (err, user) => {
 			if (err) {
 				return next(
@@ -28,15 +26,13 @@ module.exports = (server) => {
 					)
 				}
 
-				console.log(result)
-
 				if (result) {
 					res.send(200)
 					next()
 				}
 				else {
 					return next(
-						new errors.InvalidCredentialsError()
+						new errors.InvalidCredentialsError('Invalid Credentials')
 					)
 				}
 
