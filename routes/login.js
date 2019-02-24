@@ -21,24 +21,22 @@ module.exports = (server) => {
 					new errors.InvalidContentError(err.message)
 				)
 			}
-			console.log(user)
-
-			console.log(req.params.password, user.password)
-
-			bcrypt.compare(req.params.password, user.password, (err, res) =>{
+			bcrypt.compare(req.params.password, user.password, (err, result) =>{
 				if (err) {
 					return next(
 						new errors.InvalidContentError('Bcrypt error: ' + err.message)
 					)
 				}
 
-				if (res) {
+				console.log(result)
+
+				if (result) {
 					res.send(200)
 					next()
 				}
 				else {
 					return next(
-						new errors.InvalidCredentialsError('Invalid credentials')
+						new errors.InvalidCredentialsError()
 					)
 				}
 
