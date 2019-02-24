@@ -10,11 +10,14 @@ module.exports = (server) => {
 	 * Login
 	 */
 	server.post('/authenticate', (req, res, next) => {
+		console.log('auth')
 		if (!req.is('application/json')) {
 			return next(
 				new errors.InvalidContentError(`Expects 'application/json'`)
 			)
 		}
+
+		console.log(req.body)
 
 		User.findOne({ slug: req.body.username }, '+password' , (err, user) => {
 			if (err) {
@@ -22,6 +25,8 @@ module.exports = (server) => {
 					new errors.InvalidContentError(err.message)
 				)
 			}
+
+			console.log('before bcrypt')
 
 			bcrypt.compare(req.body.password, user.password, (err, result) =>{
 				if (err) {
