@@ -49,10 +49,10 @@ server.listen(config.port, () => {
 	})
 
 	db.once('open', () => {
+		require('./routes/authenticate')(server)
 		require('./routes/song')(server)
 		require('./routes/live')(server)
 		require('./routes/user')(server)
-		require('./routes/login')(server)
 		console.log(`Server is listening on port ${config.port}`)
 	})
 })
