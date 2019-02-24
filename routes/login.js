@@ -18,14 +18,16 @@ module.exports = (server) => {
 		User.find({ slug: req.params.username }, (err, user) => {
 			if (err) {
 				return next(
-					new errors.InvalidContentError(err.message)
+					new errors.InvalidContentError('Mongo Error: ' + err.message)
 				)
 			}
+
+			console.log(req.params.password, user.password)
 
 			bcrypt.compare(req.params.password, user.password, (err, res) =>{
 				if (err) {
 					return next(
-						new errors.InvalidContentError(err.message)
+						new errors.InvalidContentError('Bcrypt error: ' + err.message)
 					)
 				}
 
