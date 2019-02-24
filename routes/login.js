@@ -13,6 +13,8 @@ module.exports = (server) => {
 			)
 		}
 
+		console.log(req.params)
+
 		User.find({ slug: req.params.slug }, (err, user) => {
 			if (err) {
 				return next(
