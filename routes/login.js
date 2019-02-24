@@ -21,13 +21,6 @@ module.exports = (server) => {
 					new errors.InvalidContentError(err.message)
 				)
 			}
-
-			if (!user || !user.length || user === undefined) {
-				return next(
-					new errors.InvalidContentError('User not found')
-				)
-			}
-
 			console.log(user)
 
 			console.log(req.params.password, user.password)
