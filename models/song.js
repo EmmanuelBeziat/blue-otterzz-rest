@@ -45,7 +45,7 @@ const songSchema = new mongoose.Schema({
 	}]
 }, { minimize: false })
 
-songSchema.plugin(mongooseUrlSlugs('artist title'))
+songSchema.plugin(mongooseUrlSlugs('infos/artist infos/title'))
 songSchema.plugin(mongooseStringQuery)
 
 songSchema.virtual('name').get(user => {
