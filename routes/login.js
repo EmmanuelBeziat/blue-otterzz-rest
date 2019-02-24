@@ -14,7 +14,7 @@ module.exports = (server) => {
 
 		console.log(req)
 
-		const data = req.body || {}
+		/* const data = req.body || {}
 
 		bcrypt.compare(data.password, hash, function(err, res) {
 			if (err) {
@@ -24,7 +24,7 @@ module.exports = (server) => {
 			}
 
 			console.log(res)
-		})
+		}) */
 
 	})
 }
