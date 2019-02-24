@@ -27,7 +27,9 @@ module.exports = (server) => {
 				}
 
 				if (result) {
-					res.send(200)
+					res.send(200, {
+						token: 'fzafaezfazfd'
+					})
 					next()
 				}
 				else {

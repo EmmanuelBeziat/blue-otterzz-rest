@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 		},
 		trim: true
 	},
-	password: { type: String, required: true, bcrypt: true },
+	password: { type: String, required: true, bcrypt: true, select: false },
 	bio: String,
 	registered: { type: Date, default: Date.new },
 	picture: { type: String, trim: true },
