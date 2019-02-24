@@ -50,7 +50,8 @@ songSchema.plugin(mongooseStringQuery)
 
 songSchema.virtual('name').get(() => {
 	console.log(this)
-	return `${this.infos.artist} — ${this.infos.title}`
+	// return `${this.infos.artist} — ${this.infos.title}`
+	return 'lol'
 })
 songSchema.virtual('getScore').get(() => this.scores.reduce((a, b) => a.value + b.value, 0) / this.scores.length)
 
