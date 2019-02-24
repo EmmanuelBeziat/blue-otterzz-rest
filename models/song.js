@@ -48,8 +48,8 @@ const songSchema = new mongoose.Schema({
 songSchema.plugin(mongooseUrlSlugs('artist title'))
 songSchema.plugin(mongooseStringQuery)
 
-songSchema.virtual('name').get(() => {
-	console.log(this)
+songSchema.virtual('name').get(user => {
+	console.log(user)
 	// return `${this.infos.artist} — ${this.infos.title}`
 	return 'lol'
 })
