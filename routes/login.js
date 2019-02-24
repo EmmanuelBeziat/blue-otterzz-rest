@@ -1,9 +1,9 @@
-// const config = require('../config')
+const config = require('../config')
 const User = require('../models/user')
 
 const bcrypt = require('bcrypt')
 const errors = require('restify-errors')
-// const jsonWebToken = require('jsonwebtoken')
+const jsonWebToken = require('jsonwebtoken')
 
 module.exports = (server) => {
 	/**
@@ -33,9 +33,8 @@ module.exports = (server) => {
 				}
 
 				if (result) {
-					/* const token = jsonWebToken.sign({ id: user._id }, config.tokenSecret, { expiresIn: '24h' })
-					res.send(200, { auth: true, token: token }) */
-					res.send(200)
+					const token = jsonWebToken.sign({ id: user._id }, config.tokenSecret, { expiresIn: '24h' })
+					res.send(200, { auth: true, token: token })
 					next()
 				}
 
