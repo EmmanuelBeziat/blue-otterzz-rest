@@ -1,5 +1,5 @@
 const errors = require('restify-errors')
-const bcrypt = required('bcrypt')
+const bcrypt = require('bcrypt')
 
 module.exports = (server) => {
 	server.use(restify.plugins.queryParser({
@@ -17,15 +17,18 @@ module.exports = (server) => {
 		}
 
 		console.log(req)
+
+		const data = req.body || {}
+
+		bcrypt.compare(data.password, hash, function(err, res) {
+			if (err) {
+				return next(
+					new errors.InvalidContentError(err.message)
+				)
+			}
+
+			console.log(res)
+		})
+
 	})
 }
-
-bcrypt.compare(data.password, hash, function(err, res) {
-	if (err) {
-		return next(
-			new errors.InvalidContentError(err.message)
-		)
-	}
-
-	console.log(res)
-})
