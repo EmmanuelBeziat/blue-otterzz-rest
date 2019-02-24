@@ -8,11 +8,11 @@ const songSchema = new mongoose.Schema({
 		title: { type: String, required: true },
 		artist: { type: String, required: true }
 	},
-	meta: [{
+	meta: {
 		tuning: String,
 		style: String,
 		url: { type: String, required: true }
-	}],
+	},
 	submited: {
 		user: { type: String, required: true },
 		date: { type: Date, default: Date.now }
