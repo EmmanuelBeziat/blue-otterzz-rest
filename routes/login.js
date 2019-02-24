@@ -15,7 +15,7 @@ module.exports = (server) => {
 
 		console.log(req.params)
 
-		User.find({ slug: req.params.username }, (err, user) => {
+		User.findOne({ slug: req.params.username }, (err, user) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
