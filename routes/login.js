@@ -32,10 +32,16 @@ module.exports = (server) => {
 					)
 				}
 
-				console.log(res)
+				if (res) {
+					res.send(200)
+					next()
+				}
+				else {
+					return next(
+						new errors.InvalidCredentialsError('Invalid credentials')
+					)
+				}
 
-				res.send(200)
-				next()
 			})
 		})
 
