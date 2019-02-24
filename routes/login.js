@@ -22,6 +22,8 @@ module.exports = (server) => {
 				)
 			}
 
+			console.log(user)
+
 			console.log(req.params.password, user.password)
 
 			bcrypt.compare(req.params.password, user.password, (err, res) =>{
