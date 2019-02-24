@@ -13,7 +13,7 @@ module.exports = (server) => {
 			)
 		}
 
-		User.findOne({ slug: req.params.username }, (err, user) => {
+		User.findOne({ slug: req.params.username }, '+password' , (err, user) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
