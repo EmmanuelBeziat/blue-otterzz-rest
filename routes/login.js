@@ -19,6 +19,7 @@ module.exports = (server) => {
 					new errors.InvalidContentError(err.message)
 				)
 			}
+
 			bcrypt.compare(req.params.password, user.password, (err, result) =>{
 				if (err) {
 					return next(
@@ -30,6 +31,7 @@ module.exports = (server) => {
 					res.send(200)
 					next()
 				}
+
 				else {
 					return next(
 						new errors.InvalidCredentialsError('Invalid Credentials')
@@ -38,6 +40,5 @@ module.exports = (server) => {
 
 			})
 		})
-
 	})
 }
