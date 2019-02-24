@@ -1,5 +1,6 @@
 const errors = require('restify-errors')
 const User = require('../models/user')
+// const bcrypt = require('bcrypt')
 
 module.exports = (server) => {
 	/**
@@ -91,6 +92,19 @@ module.exports = (server) => {
 			next()
 		})
 	})
+
+	/**
+	 * Password Recovery
+	 */
+	/* server.put('/recovery/:slugs', (req, res, next) => {
+		if (!req.is('application/json')) {
+			return next(
+				new errors.InvalidContentError("Expects 'application/json'")
+			)
+		}
+
+		let data = req.body || {}
+	}) */
 
 	/**
 	 * DELETE

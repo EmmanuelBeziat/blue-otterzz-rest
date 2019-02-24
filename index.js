@@ -52,6 +52,7 @@ server.listen(config.port, () => {
 		require('./routes/song')(server)
 		require('./routes/live')(server)
 		require('./routes/user')(server)
+		require('./routes/login')(server)
 		console.log(`Server is listening on port ${config.port}`)
 	})
 })
