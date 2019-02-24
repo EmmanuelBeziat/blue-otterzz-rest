@@ -2,10 +2,6 @@ const errors = require('restify-errors')
 const bcrypt = require('bcrypt')
 
 module.exports = (server) => {
-	server.use(restify.plugins.queryParser({
-		mapParams: true,
-		parameterLimit: 2
-	}))
 	/**
 	 * Login
 	 */
