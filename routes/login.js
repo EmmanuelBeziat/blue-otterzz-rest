@@ -1,5 +1,6 @@
 const errors = require('restify-errors')
 const bcrypt = require('bcrypt')
+const User = require('../models/user')
 
 module.exports = (server) => {
 	/**
@@ -12,19 +13,26 @@ module.exports = (server) => {
 			)
 		}
 
-		console.log(req)
-
-		/* const data = req.body || {}
-
-		bcrypt.compare(data.password, hash, function(err, res) {
+		User.find({ slug: req.params.slug }, (err, user) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
 				)
 			}
 
-			console.log(res)
-		}) */
+			bcrypt.compare(req.params.password, user.password, (err, res) =>{
+				if (err) {
+					return next(
+						new errors.InvalidContentError(err.message)
+					)
+				}
+
+				console.log(res)
+
+				res.send(200)
+				next()
+			})
+		})
 
 	})
 }
