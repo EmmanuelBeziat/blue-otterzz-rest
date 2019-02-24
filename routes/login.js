@@ -18,11 +18,15 @@ module.exports = (server) => {
 		User.find({ slug: req.params.username }, (err, user) => {
 			if (err) {
 				return next(
-					new errors.InvalidContentError('Mongo Error: ' + err.message)
+					new errors.InvalidContentError(err.message)
 				)
 			}
 
-			console.log(user)
+			if (!user || !user.length || user === undefined) {
+				return next(
+					new errors.InvalidContentError('User not found')
+				)
+			}
 
 			console.log(req.params.password, user.password)
 
