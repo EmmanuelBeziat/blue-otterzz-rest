@@ -31,7 +31,9 @@ module.exports = (server) => {
 				}
 
 				if (result) {
+					console.log('coucou')
 					const token = jsonWebToken.sign({ token: 'test' }, config.tokenSecret, { expiresIn: '24h' })
+					console.log(token)
 					res.send(200, token)
 					next()
 				}
