@@ -45,14 +45,9 @@ const songSchema = new mongoose.Schema({
 	}]
 }, { minimize: false })
 
-songSchema.plugin(mongooseUrlSlugs('infos/artist infos/title'))
+songSchema.plugin(mongooseUrlSlugs('infos.artist infos.title', { update: true }))
 songSchema.plugin(mongooseStringQuery)
 
-songSchema.virtual('name').get(user => {
-	console.log(user)
-	// return `${this.infos.artist} — ${this.infos.title}`
-	return 'lol'
-})
 songSchema.virtual('getScore').get(() => this.scores.reduce((a, b) => a.value + b.value, 0) / this.scores.length)
 
 const Song = mongoose.model('Song', songSchema)
