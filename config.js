@@ -13,5 +13,5 @@ module.exports = {
 		user: process.env.MONGODB_USER || config.db.user,
 		pass: process.env.MONGODB_PASS || config.db.pass
 	},
-	tokenSecret: process.env.TOKEN_SECRET || config.app.token
+	tokenSecret: process.env.TOKEN_SECRET || config.auth.token
 }
