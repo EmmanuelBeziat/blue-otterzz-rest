@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const mongooseStringQuery = require('mongoose-string-query')
 const mongooseUrlSlugs = require('mongoose-url-slugs')
-const dateFns = require('date-fns')
 
 const liveSchema = new mongoose.Schema({
 	isActive: { type: Boolean, default: true },
@@ -27,9 +26,7 @@ const liveSchema = new mongoose.Schema({
 	}]
 }, { minimize: false })
 
-const date = dateFns.format(new Date(liveSchema.date), 'yyyy-MM-dd')
-console.log(date)
-liveSchema.plugin(mongooseUrlSlugs(date), { update: true })
+liveSchema.plugin(mongooseUrlSlugs('name'), { update: true })
 liveSchema.plugin(mongooseStringQuery)
 
 const Live = mongoose.model('Live', liveSchema)
