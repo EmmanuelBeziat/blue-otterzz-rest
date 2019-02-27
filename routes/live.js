@@ -21,7 +21,7 @@ module.exports = (server) => {
 				next()
 			}
 
-			item.score.total = item.getScore()
+			// item.score.total = item.getScore()
 
 			res.send(201, item, { notify: `Live «${live.name}» successfully created` })
 			next()
