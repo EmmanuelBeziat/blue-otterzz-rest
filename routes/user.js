@@ -13,20 +13,14 @@ module.exports = (server) => {
 			)
 		}
 
-		console.log('user create request')
-
 		let data = req.body || {}
 		let user = new User(data)
-
-		console.log(data)
 
 		user.save((err, item) => {
 			if (err) {
 				return next(new errors.InternalError(err.message))
 				next()
 			}
-
-			console.log('seems ok')
 
 			res.send(201, item, { notify: `User «${user.name}» successfully created` })
 			next()
