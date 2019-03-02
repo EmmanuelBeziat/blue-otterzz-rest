@@ -34,7 +34,7 @@ module.exports = (server) => {
 
 				if (result) {
 					const token = jsonWebToken.sign({ id: user._id }, config.tokenSecret, { expiresIn: '24h' })
-					res.send(200, { auth: true, token: token })
+					res.send(200, { auth: true, user: user.username, token: token })
 					next()
 				}
 
