@@ -30,6 +30,7 @@
     "restify": "^7.7.0",
     "restify-cors-middleware": "^1.1.1",
     "restify-errors": "^6.1.1",
+    "restify-jwt-community": "^1.0.9",
     "restify-plugins": "^1.6.0",
     "serve-static-restify": "^3.0.0",
     "sharp": "^0.21.3",

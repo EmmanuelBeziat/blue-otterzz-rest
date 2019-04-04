@@ -3,7 +3,7 @@ const User = require('../models/user')
 
 const bcrypt = require('bcrypt')
 const errors = require('restify-errors')
-const jsonWebToken = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 module.exports = (server) => {
 	/**
@@ -18,7 +18,7 @@ module.exports = (server) => {
 
 		let data = req.body || {}
 
-		User.findOne({ slug: data.username }, '+password' , (err, user) => {
+		User.findOne({ slug: data.username }, '+password', (err, user) => {
 			if (err) {
 				return next(
 					new errors.InvalidContentError(err.message)
@@ -33,8 +33,9 @@ module.exports = (server) => {
 				}
 
 				if (result) {
-					const token = jsonWebToken.sign({ id: user._id }, config.tokenSecret, { expiresIn: '24h' })
-					res.send(200, { auth: true, user: user.slug, token: token })
+					const token = jwt.sign({ id: user._id }, config.tokenSecret, { expiresIn: '1h' })
+					let { iat, exp } = jwt.decode(token)
+					res.send(200, { auth: true, user: user.slug, iat, exp, token })
 					next()
 				}
 

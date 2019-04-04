@@ -6,6 +6,7 @@ const restify = require('restify')
 const mongoose = require('mongoose')
 const serveStatic = require('serve-static-restify')
 const corsMiddleware = require('restify-cors-middleware')
+const rjwt = require('restify-jwt-community')
 
 /**
   * Initialize Server
@@ -32,6 +33,8 @@ server.use(restify.plugins.fullResponse())
 server.pre(cors.preflight)
 server.pre(serveStatic(__dirname + '/public'))
 server.use(cors.actual)
+server.use(rjwt(config.tokenSecret).unless({ path: ['/login'] }));
+
 
 /**
   * Start Server, Connect to DB & Require Routes
