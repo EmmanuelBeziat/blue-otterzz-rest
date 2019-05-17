@@ -33,7 +33,7 @@ server.use(restify.plugins.fullResponse())
 server.pre(cors.preflight)
 server.pre(serveStatic(__dirname + '/public'))
 server.use(cors.actual)
-server.use(rjwt({ secret: config.tokenSecret }).unless({ path: ['/login'] }))
+// server.use(rjwt({ secret: config.tokenSecret }).unless({ path: ['/login'] }))
 
 /**
   * Start Server, Connect to DB & Require Routes
