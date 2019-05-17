@@ -33,7 +33,8 @@ server.use(restify.plugins.fullResponse())
 server.pre(cors.preflight)
 server.pre(serveStatic(__dirname + '/public'))
 server.use(cors.actual)
-server.use(rjwt(config.tokenSecret).unless({ path: ['/login'] }));
+console.log(config.tokenSecret)
+server.use(rjwt(config.tokenSecret).unless({ path: ['/login'] }))
 
 
 /**
